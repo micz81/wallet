@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Deleting wallet</title>
+</head>
+<body>
+
+    <h1>Wallet removal confirmation</h1>
+
+    <h2 th:text="'Are you sure you want to delete investment wallet: ' + ${wallet.name}"></h2th:text></h2>
+
+    <form action="#" th:action="@{/wallet/{id} (id=*{id})}" th:object="${wallet}" method="delete">
+        <button type="submit" th:name="confirm" th:value="yes">Delete wallet</button>
+        <button type="submit" th:name="confirm" th:value="no">Cancel delete request</button>
+    </form>
+</body>
+</html>

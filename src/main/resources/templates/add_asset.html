@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--        <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>-->
+<!--        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>-->
+
+    <form th:object="${asset}" th:action="@{/wallet/asset}" th:method="POST">
+        <div class="mb-3">
+            <label for="inputTicker" class="form-label">Ticker</label>
+            <input th:field="*{ticker}" type="input" name="ticker" class="form-control" id="inputTicker" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="inputName" class="form-label">Name</label>
+            <input th:field="*{name}" type="input" name="name" class="form-control" id="inputName">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Asset Class</label>
+            <select name="assetClass" th:field="*{assetClass}">
+                <option th:each="assetClassOpt : ${T(com.wallet.model.AssetClass).values()}"
+                        th:value="${assetClassOpt}" th:text="${assetClassOpt.displayValue}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="inputBuyPrice" class="form-label">Buy Price</label>
+            <input th:field="*{buyPrice}" type="input" name="buyPrice" class="form-control" id="inputBuyPrice">
+        </div>
+        <div class="mb-3">
+            <label for="inputBuyDate" class="form-label">Buy Date</label>
+            <input th:field="*{buyDate}" type="date" name="buyDate" class="form-control" id="inputBuyDate">
+        </div>
+        <button type="submit" class="btn btn-primary">Add asset</button>
+    </form>
+
+</body>
+</html>
