@@ -1,6 +1,7 @@
 package com.wallet.service;
 
 import com.wallet.model.Wallet;
+import com.wallet.model.WalletDto;
 import com.wallet.repository.WalletCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,15 @@ public class WalletService {
         return walletCrudRepository.save(wallet);
     }
 
-    public void deleteWallet(Integer id) {
+    public void deleteWallet(int id) {
         walletCrudRepository.deleteById(id);
     }
+
+    public Wallet findById(Integer id) {
+        return walletCrudRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(id + " wallet not found"));
+    }
+
+
 }
