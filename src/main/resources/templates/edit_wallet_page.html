@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <div class="col-md-6">
-            <form action="#" th:action="@{/wallet/update/{id}(id=*{id})}" th:object="${wallet}">
+            <form action="#" th:action="@{/wallet/edit/{id}(id=*{id})}" th:object="${wallet}" method="post">
                 <p>
                     New wallet name: <input type="text" th:field="*{name}" > <input type="submit" value="Submit">
                 </p>
