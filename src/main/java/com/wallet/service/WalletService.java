@@ -35,5 +35,7 @@ public class WalletService {
                 .orElseThrow(() -> new IllegalArgumentException(id + " wallet not found"));
     }
 
+    public void
+
 
 }

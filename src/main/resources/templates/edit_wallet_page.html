@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Wallet Name</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/wallet/update/{id}(id=*{id})}" th:object="${wallet}">
+                <p>
+                    New wallet name: <input type="text" th:field="*{name}" > <input type="submit" value="Submit">
+                </p>
+
+                <p>
+                    <a href="/"> Go back to main page</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
