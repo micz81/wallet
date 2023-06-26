@@ -39,4 +39,7 @@ public class Asset {
     @Column(name = "buy_date")
     private LocalDate buyDate;
 
+    @Column(name = "wallet")
+    private String wallet;
+
 }

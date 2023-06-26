@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="content">
-        <h2>Welcome to Wallet !!</h2>
+        <h2 th:text="'Welcome to your wallet: ' + ${wallet.name}"></h2>
 
         <div th:if="${#lists.isEmpty(assets)}">
             <p>You have no assets in your wallet. Please add some.</p>
