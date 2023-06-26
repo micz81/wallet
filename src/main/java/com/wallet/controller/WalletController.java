@@ -6,11 +6,9 @@ import com.wallet.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class WalletController {
@@ -46,7 +44,7 @@ public class WalletController {
     @PostMapping("/wallet/edit/{id}")
     public String renameWallet(@PathVariable("id") int id, @Valid Wallet wallet, Model model) {
 
-        walletService.
+        walletService.updateWallet(wallet.getId(), wallet.getName());
 
         return "redirect:/";
     }
