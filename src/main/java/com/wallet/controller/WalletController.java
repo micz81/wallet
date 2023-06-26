@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -29,6 +30,23 @@ public class WalletController {
     public String addWallet(@ModelAttribute WalletDto walletDto) {
 
         walletService.addWallet(walletDto.getName());
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editWalletNamePage(@PathVariable("id") int id, Model model) {
+
+        Wallet wallet = walletService.findById(id);
+        model.addAttribute("wallet", wallet);
+
+        return "edit_wallet_page";
+    }
+
+    @PostMapping("/wallet/edit/{id}")
+    public String renameWallet(@PathVariable("id") int id, @Valid Wallet wallet, Model model) {
+
+        walletService.
 
         return "redirect:/";
     }
