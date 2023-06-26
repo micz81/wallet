@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AssetService {
@@ -19,6 +20,13 @@ public class AssetService {
 
     public List<Asset> getAssets() {
         return assetCrudRepository.findAll();
+    }
+
+    public List<Asset> findAssetsByWallet(String wallet) {
+        return assetCrudRepository.findAll()
+                .stream()
+                .filter(asset -> asset.getWallet() != null && asset.getWallet().equals(wallet))
+                .collect(Collectors.toList());
     }
 
     public void removeAllAssets() {
