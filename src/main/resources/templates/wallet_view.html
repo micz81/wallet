@@ -18,7 +18,9 @@
         </div>
 
         <div th:unlless="${#lists.isEmpty(assets)}">
-            <button type="submit" class="btn btn-primary">Add asset</button>
+            <form action="#" th:action="@{/asset}" th:object="${wallet}">
+                <button type="submit" class="btn btn-primary">Add asset</button>
+            </form>
             <table class="table">
                 <thead>
                     <tr>

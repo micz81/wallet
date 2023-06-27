@@ -33,8 +33,16 @@
             <label for="inputBuyDate" class="form-label">Buy Date</label>
             <input th:field="*{buyDate}" type="date" name="buyDate" class="form-control" id="inputBuyDate">
         </div>
+        <div class="mb-3">
+            <label for="wallet" class="form-label">wallet</label>
+            <input th:field="*{wallet}" type="input" name="wallet" class="form-control" id="wallet">
+        </div>
         <button type="submit" class="btn btn-primary">Add asset</button>
     </form>
+
+    <p>
+        <a href="javascript:javascript:history.go(-1)">Go back to wallet view</a>
+    </p>
 
 </body>
 </html>
