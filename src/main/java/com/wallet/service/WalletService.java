@@ -1,5 +1,6 @@
 package com.wallet.service;
 
+import com.wallet.model.Asset;
 import com.wallet.model.Wallet;
 import com.wallet.repository.WalletCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,13 @@ public class WalletService {
         return walletCrudRepository
                 .findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(id + " wallet not found"));
+    }
+
+    public Integer findWalletIdforAsset(Asset asset) {
+        return getWallets().stream()
+                .filter(w -> w.getName().equals(asset.getWallet()))
+                .map(Wallet::getId)
+                .findFirst()
+                .get();
     }
 }

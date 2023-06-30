@@ -5,6 +5,7 @@ import com.wallet.repository.AssetCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,16 @@ public class AssetService {
     private AssetCrudRepository assetCrudRepository;
 
     public Asset addAsset(Asset asset) {
-        return assetCrudRepository.save(asset);
+        List<String> tickers = findAssetsByWallet(asset.getWallet()).stream()
+                .map(Asset::getTicker)
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+
+        if(tickers.contains(asset.getTicker().toLowerCase())) {
+            return asset;
+        } else {
+            return assetCrudRepository.save(asset);
+        }
     }
 
     public List<Asset> getAssets() {

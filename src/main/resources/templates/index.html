@@ -36,7 +36,7 @@
 <!--                <th th:text="${walletStat.index} + 1" scope="row"></th>-->
                 <td th:text="${wallet.name}"></td>
                 <td>
-                    <a th:href="@{/wallet/{id}(id=${wallet.id})}" class="access-wallet-button">Access Wallet</a>
+                    <a th:href="@{/wallet/{id}(id=${wallet.id})}" th:object="${wallet}" class="access-wallet-button">Access Wallet</a>
 
                     <a th:href="@{/edit/{id}(id=${wallet.id})}" class="update-wallet-button">Edit Name</a>
 
