@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Asset</title>
+</head>
+<body>
+  <div class="container">
+      <form action="#" th:action="@{/asset/update/{id}(id=*{id})}" th:object="${asset}" method="post">
+        <div class="mb-3">
+          <label for="inputTickerUpdate" class="form-label">Ticker</label>
+          <input th:field="*{ticker}" type="text" name="ticker" class="form-control" id="inputTickerUpdate">
+        </div>
+        <div class="mb-3">
+          <label for="inputNameUpdate" class="form-label">Name</label>
+          <input th:field="*{name}" type="text" name="name" class="form-control" id="inputNameUpdate">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Asset Class</label>
+          <select name="assetClass" th:field="*{assetClass}" type="text">
+            <option th:each="assetClassOpt : ${T(com.wallet.model.AssetClass).values()}"
+                    th:value="${assetClassOpt}" th:text="${assetClassOpt.displayValue}"></option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input th:field="*{quantity}" type="text" name="quantity" class="form-control" id="quantity">
+        </div>
+        <div class="mb-3">
+          <label for="inputBuyPriceUpdate" class="form-label">Buy Price</label>
+          <input th:field="*{buyPrice}" type="text" name="buyPrice" class="form-control" id="inputBuyPriceUpdate">
+        </div>
+        <div class="mb-3">
+          <label for="inputBuyDateUpdate" class="form-label">Buy Date</label>
+          <input th:field="*{buyDate}" type="date" name="buyDate" class="form-control" id="inputBuyDateUpdate">
+        </div>
+        <div class="mb-3">
+          <label for="walletUpdate" class="form-label">wallet</label>
+          <input th:field="*{wallet}" type="text" name="wallet" class="form-control" id="walletUpdate">
+        </div>
+        <button type="submit" class="btn btn-primary">Update asset</button>
+      </form>
+
+    <p>
+      <a href="javascript:javascript:history.go(-1)">Go back to wallet view</a>
+    </p>
+  </div>
+
+</body>
+</html>

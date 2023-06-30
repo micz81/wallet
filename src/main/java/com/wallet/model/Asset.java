@@ -32,8 +32,11 @@ public class Asset {
     @Column(name = "asset_class")
     private AssetClass assetClass;
 
+    @Column(name = "quantity")
+    private double quantity;
+
     @Column(name = "buy_price")
-    private BigDecimal buyPrice;
+    private double buyPrice;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "buy_date")

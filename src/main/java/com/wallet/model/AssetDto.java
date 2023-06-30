@@ -25,8 +25,11 @@ public class AssetDto {
     @NotEmpty(message = "asset class must not be empty")
     private String assetClass;
 
+    @NotEmpty(message = "quantity must not be empty")
+    private double quantity;
+
     @NotEmpty(message = "buy price must not be empty")
-    private BigDecimal buyPrice;
+    private double buyPrice;
 
     @NotEmpty(message = "buy date must not be empty")
     private LocalDate buyDate;
