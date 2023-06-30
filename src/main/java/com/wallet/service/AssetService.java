@@ -18,6 +18,7 @@ public class AssetService {
         return assetCrudRepository.save(asset);
     }
 
+
     public List<Asset> getAssets() {
         return assetCrudRepository.findAll();
     }

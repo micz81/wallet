@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<!--        <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>-->
-<!--        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>-->
+        <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success" role="alert"></div>
+        <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert"></div>
 
-    <form th:object="${asset}" th:action="@{/wallet/asset}" th:method="POST">
+    <form th:object="${asset}" th:action="@{/asset}" th:method="POST">
         <div class="mb-3">
             <label for="inputTicker" class="form-label">Ticker</label>
             <input th:field="*{ticker}" type="input" name="ticker" class="form-control" id="inputTicker" aria-describedby="emailHelp">
@@ -35,7 +35,7 @@
         </div>
         <div class="mb-3">
             <label for="wallet" class="form-label">wallet</label>
-            <input th:field="*{wallet}" type="input" name="wallet" class="form-control" id="wallet">
+            <input th:field="*{wallet}" type="text" name="wallet" class="form-control" id="wallet">
         </div>
         <button type="submit" class="btn btn-primary">Add asset</button>
     </form>
