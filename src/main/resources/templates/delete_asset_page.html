@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Asset</title>
+</head>
+<body>
+
+    <h1>Wallet removal confirmation</h1>
+
+    <form action="#" th:action="@{/asset/delete/{id}(id=*{id})}" th:object="${asset}">
+
+        <h2 th:text="'Are you sure you want to delete asset: ' + *{ticker}"></h2>
+        <input type="submit" value="Delete asset">
+        <p>
+            <a href="javascript:javascript:history.go(-1)">Go back to wallet view</a>
+        </p>
+    </form>
+
+</body>
+</html>
