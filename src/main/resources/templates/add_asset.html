@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Asset</title>
 </head>
 <body>
 
@@ -12,7 +12,7 @@
     <form th:object="${asset}" th:action="@{/asset}" th:method="POST">
         <div class="mb-3">
             <label for="inputTicker" class="form-label">Ticker</label>
-            <input th:field="*{ticker}" type="input" name="ticker" class="form-control" id="inputTicker" aria-describedby="emailHelp">
+            <input th:field="*{ticker}" type="input" name="ticker" class="form-control" id="inputTicker">
         </div>
         <div class="mb-3">
             <label for="inputName" class="form-label">Name</label>
@@ -24,6 +24,10 @@
                 <option th:each="assetClassOpt : ${T(com.wallet.model.AssetClass).values()}"
                         th:value="${assetClassOpt}" th:text="${assetClassOpt.displayValue}"></option>
             </select>
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input th:field="*{quantity}" type="input" name="quantity" class="form-control" id="quantity">
         </div>
         <div class="mb-3">
             <label for="inputBuyPrice" class="form-label">Buy Price</label>

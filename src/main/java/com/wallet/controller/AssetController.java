@@ -2,6 +2,7 @@ package com.wallet.controller;
 
 import com.wallet.model.Asset;
 import com.wallet.model.Wallet;
+import com.wallet.repository.WalletCrudRepository;
 import com.wallet.service.AssetService;
 import com.wallet.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +25,25 @@ public class AssetController {
 
     @Autowired
     WalletService walletService;
+
+    @GetMapping("/asset/edit/{id}")
+    public String editAssetPage(@PathVariable("id") int id, Model model) {
+
+        Asset asset = assetService.findById(id);
+        model.addAttribute("asset", asset);
+
+        return "edit_asset";
+    }
+
+    @PostMapping("/asset/update/{id}")
+    public String updateAsset(@PathVariable("id") int id, Asset updatedAsset, Model model) {
+
+        assetService.updateAsset(updatedAsset);
+        model.addAttribute("wallet", walletService.getByName(updatedAsset.getWallet()));
+        model.addAttribute("assets", assetService.findAssetsByWallet(updatedAsset.getWallet()));
+
+        return "wallet_view";
+    }
 
     @GetMapping("/asset")
     public String addAssetPage(Model model, Wallet wallet) {
@@ -42,6 +64,6 @@ public class AssetController {
         model.addAttribute("assets", assetService.findAssetsByWallet(asset.getWallet()));
 
         return "wallet_view";
-
     }
+
 }

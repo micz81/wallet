@@ -5,6 +5,7 @@ import com.wallet.repository.AssetCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,11 @@ public class AssetService {
 
     @Autowired
     private AssetCrudRepository assetCrudRepository;
+
+    public Asset findById(int id) {
+        return assetCrudRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(id + " asset not found"));
+    }
 
     public Asset addAsset(Asset asset) {
         List<String> tickers = findAssetsByWallet(asset.getWallet()).stream()
@@ -27,6 +33,11 @@ public class AssetService {
             return assetCrudRepository.save(asset);
         }
     }
+
+    public Asset updateAsset(Asset updatedAsset) {
+        return assetCrudRepository.save(updatedAsset);
+    }
+
 
     public List<Asset> getAssets() {
         return assetCrudRepository.findAll();

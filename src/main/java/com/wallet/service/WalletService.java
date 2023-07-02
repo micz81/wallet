@@ -4,6 +4,7 @@ import com.wallet.model.Asset;
 import com.wallet.model.Wallet;
 import com.wallet.repository.WalletCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public class WalletService {
 
     public List<Wallet> getWallets() {
         return walletCrudRepository.findAll();
+    }
+
+    public Wallet getByName(String name) {
+        return walletCrudRepository.findByName(name);
     }
 
     public Wallet addWallet(String name) {
@@ -42,6 +47,7 @@ public class WalletService {
                 .findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(id + " wallet not found"));
     }
+
 
     public Integer findWalletIdforAsset(Asset asset) {
         return getWallets().stream()
