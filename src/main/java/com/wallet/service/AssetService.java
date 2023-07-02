@@ -38,6 +38,10 @@ public class AssetService {
         return assetCrudRepository.save(updatedAsset);
     }
 
+    public void deleteAsset(int id) {
+        assetCrudRepository.deleteById(id);
+    }
+
 
     public List<Asset> getAssets() {
         return assetCrudRepository.findAll();

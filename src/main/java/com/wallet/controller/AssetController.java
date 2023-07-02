@@ -26,8 +26,31 @@ public class AssetController {
     @Autowired
     WalletService walletService;
 
+    @GetMapping("/asset/{id}")
+    public String showRemoveAssetPage(@PathVariable("id") int id, Model model) {
+
+        Asset asset = assetService.findById(id);
+        model.addAttribute("asset", asset);
+
+        return "delete_asset_page";
+    }
+
+    @GetMapping("/asset/delete/{id}")
+    public String deleteAsset(@PathVariable("id") int id, Model model) {
+
+        Wallet wallet = walletService.getByName(assetService.findById(id).getWallet());
+
+        assetService.deleteAsset(id);
+
+        List<Asset> assets = assetService.findAssetsByWallet(wallet.getName());
+        model.addAttribute("wallet", wallet);
+        model.addAttribute("assets", assets);
+
+        return "wallet_view";
+    }
+
     @GetMapping("/asset/edit/{id}")
-    public String editAssetPage(@PathVariable("id") int id, Model model) {
+    public String showEditAssetPage(@PathVariable("id") int id, Model model) {
 
         Asset asset = assetService.findById(id);
         model.addAttribute("asset", asset);
