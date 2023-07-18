@@ -38,9 +38,18 @@ public class Asset {
     @Column(name = "buy_price")
     private double buyPrice;
 
+    @Column(name = "last_price")
+    private double lastPrice;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "buy_date")
     private LocalDate buyDate;
+
+    @Column(name = "market_value")
+    private double marketValue;
+
+    @Column(name = "unrealized_pnl")
+    private double unrealizedPnL;
 
     @Column(name = "wallet")
     private String wallet;

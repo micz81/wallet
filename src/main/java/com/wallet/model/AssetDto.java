@@ -3,7 +3,7 @@ package com.wallet.model;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
-import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -31,8 +31,16 @@ public class AssetDto {
     @NotEmpty(message = "buy price must not be empty")
     private double buyPrice;
 
+    @NotEmpty(message = "last price must not be empty")
+    private double lastPrice;
+
     @NotEmpty(message = "buy date must not be empty")
     private LocalDate buyDate;
+    @NotNull
+    private double marketValue;
+    @NotNull
+    private double unrealizedPnL;
 
-
+    @NotEmpty
+    private String wallet;
 }

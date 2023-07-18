@@ -1,5 +1,7 @@
 package com.wallet.service;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -9,8 +11,6 @@ import java.io.IOException;
 
 @Service
 public class StockPricingService {
-    //seeking alpha from rapidapi
-
 
     public int getId(String ticker) throws IOException {
 
@@ -25,6 +25,7 @@ public class StockPricingService {
 
         Response response = client.newCall(request).execute();
         return 146;
+
     }
     public void getPrice() throws IOException {
 
@@ -38,7 +39,11 @@ public class StockPricingService {
                 .build();
 
         Response response = client.newCall(request).execute();
-        System.out.println(response);
+
+        JsonObject result = new JsonParser().parse(response.body().string()).getAsJsonObject();
+        System.out.println(result.get("real_time_quotes").getAsJsonArray()
+                .get(0).getAsJsonObject()
+                .get("last"));
 
     }
 
