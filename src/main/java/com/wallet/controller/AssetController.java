@@ -2,7 +2,6 @@ package com.wallet.controller;
 
 import com.wallet.model.Asset;
 import com.wallet.model.Wallet;
-import com.wallet.repository.WalletCrudRepository;
 import com.wallet.service.AssetService;
 import com.wallet.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class AssetController {
