@@ -36,20 +36,20 @@ public class Asset {
     private double quantity;
 
     @Column(name = "buy_price")
-    private double buyPrice;
+    private BigDecimal buyPrice;
 
     @Column(name = "last_price")
-    private double lastPrice;
+    private BigDecimal lastPrice;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "buy_date")
     private LocalDate buyDate;
 
     @Column(name = "market_value")
-    private double marketValue;
+    private BigDecimal marketValue;
 
     @Column(name = "unrealized_pnl")
-    private double unrealizedPnL;
+    private BigDecimal unrealizedPnL;
 
     @Column(name = "wallet")
     private String wallet;

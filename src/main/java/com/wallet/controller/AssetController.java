@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,19 @@ public class AssetController {
         return "delete_asset_page";
     }
 
+    @GetMapping("/asset/refresh/{id}")
+    public String refreshAssetPrice(@PathVariable("id") int id, Model model) throws IOException {
+        Wallet wallet = walletService.getByName(assetService.findById(id).getWallet());
+
+        assetService.refreshAssetPrice(id);
+
+        List<Asset> assets = assetService.findAssetsByWallet(wallet.getName());
+        model.addAttribute("wallet", wallet);
+        model.addAttribute("assets", assets);
+
+        return "wallet_view";
+    }
+
     @GetMapping("/asset/delete/{id}")
     public String deleteAsset(@PathVariable("id") int id, Model model) {
 
@@ -54,6 +68,7 @@ public class AssetController {
 
         Asset asset = assetService.findById(id);
         model.addAttribute("asset", asset);
+        model.addAttribute("wallets", walletService.getWallets());
 
         return "edit_asset";
     }
@@ -73,6 +88,7 @@ public class AssetController {
 
         model.addAttribute("asset", new Asset());
         model.addAttribute("wallet", wallet);
+        model.addAttribute("wallets", walletService.getWallets());
 
         return "add_asset";
     }

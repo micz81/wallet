@@ -34,12 +34,26 @@
             <input th:field="*{buyPrice}" type="input" name="buyPrice" class="form-control" id="inputBuyPrice">
         </div>
         <div class="mb-3">
+            <label for="inputLastPrice" class="form-label">Last Price</label>
+            <input th:field="*{lastPrice}" type="input" name="lastPrice" class="form-control" id="inputLastPrice">
+        </div>
+        <div class="mb-3">
             <label for="inputBuyDate" class="form-label">Buy Date</label>
             <input th:field="*{buyDate}" type="date" name="buyDate" class="form-control" id="inputBuyDate">
         </div>
         <div class="mb-3">
-            <label for="wallet" class="form-label">wallet</label>
-            <input th:field="*{wallet}" type="text" name="wallet" class="form-control" id="wallet">
+            <label for="inputMarketValue" class="form-label">MarketValue</label>
+            <input th:field="*{marketValue}" type="input" name="marketValue" class="form-control" id="inputMarketValue">
+        </div>
+        <div class="mb-3">
+            <label for="inputUnrealizedPnL" class="form-label">Unrealized PnL</label>
+            <input th:field="*{unrealizedPnL}" type="input" name="unrealizedPnL" class="form-control" id="inputUnrealizedPnL">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Wallet</label>
+            <select name="wallet" th:field="${asset.wallet}" type="text">
+                <option th:each="walletOpt : ${wallets}" th:value="${walletOpt.name}" th:text="${walletOpt.name}"></option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Add asset</button>
     </form>

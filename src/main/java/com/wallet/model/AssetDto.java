@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -29,17 +30,17 @@ public class AssetDto {
     private double quantity;
 
     @NotEmpty(message = "buy price must not be empty")
-    private double buyPrice;
+    private BigDecimal buyPrice;
 
     @NotEmpty(message = "last price must not be empty")
-    private double lastPrice;
+    private BigDecimal lastPrice;
 
     @NotEmpty(message = "buy date must not be empty")
     private LocalDate buyDate;
     @NotNull
-    private double marketValue;
+    private BigDecimal marketValue;
     @NotNull
-    private double unrealizedPnL;
+    private BigDecimal unrealizedPnL;
 
     @NotEmpty
     private String wallet;

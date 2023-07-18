@@ -6,18 +6,21 @@
 </head>
 <body>
   <div class="container">
+
+    <h2 th:text="'Editing asset: ' + ${asset.ticker} + ', in wallet: ' + ${asset.wallet}" ></h2>
+
       <form action="#" th:action="@{/asset/update/{id}(id=*{id})}" th:object="${asset}" method="post">
         <div class="mb-3">
           <label for="inputTickerUpdate" class="form-label">Ticker</label>
-          <input th:field="*{ticker}" type="text" name="ticker" class="form-control" id="inputTickerUpdate">
+          <input th:field="${asset.ticker}" type="text" name="ticker" class="form-control" id="inputTickerUpdate">
         </div>
         <div class="mb-3">
           <label for="inputNameUpdate" class="form-label">Name</label>
-          <input th:field="*{name}" type="text" name="name" class="form-control" id="inputNameUpdate">
+          <input th:field="${asset.name}" type="text" name="name" class="form-control" id="inputNameUpdate">
         </div>
         <div class="mb-3">
           <label class="form-label">Asset Class</label>
-          <select name="assetClass" th:field="*{assetClass}" type="text">
+          <select name="assetClass" th:field="${asset.assetClass}" type="text">
             <option th:each="assetClassOpt : ${T(com.wallet.model.AssetClass).values()}"
                     th:value="${assetClassOpt}" th:text="${assetClassOpt.displayValue}"></option>
           </select>
@@ -39,8 +42,18 @@
           <input th:field="*{buyDate}" type="date" name="buyDate" class="form-control" id="inputBuyDateUpdate">
         </div>
         <div class="mb-3">
-          <label for="walletUpdate" class="form-label">wallet</label>
-          <input th:field="*{wallet}" type="text" name="wallet" class="form-control" id="walletUpdate">
+          <label for="inputMarketValueUpdate" class="form-label">Market Value</label>
+          <input th:field="*{marketValue}" type="text" name="marketValue" class="form-control" id="inputMarketValueUpdate">
+        </div>
+        <div class="mb-3">
+          <label for="inputUnrealizedPnL" class="form-label">Unrealized PnL</label>
+          <input th:field="*{unrealizedPnL}" type="text" name="unrealizedPnL" class="form-control" id="inputUnrealizedPnL">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Wallet</label>
+          <select name="wallet" th:field="${asset.wallet}" type="text">
+            <option th:each="walletOpt : ${wallets}" th:value="${walletOpt.name}" th:text="${walletOpt.name}"></option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Update asset</button>
       </form>
