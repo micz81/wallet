@@ -39,6 +39,12 @@ public class AssetService {
     }
 
     public Asset updateAsset(Asset updatedAsset) {
+
+        updatedAsset.setMarketValue(BigDecimal.valueOf(updatedAsset.getQuantity())
+                .multiply(updatedAsset.getLastPrice())
+                .setScale(2, RoundingMode.HALF_UP));
+        updatedAsset.setUnrealizedPnL(calculateUnrealizedPnL(updatedAsset));
+
         return assetCrudRepository.save(updatedAsset);
     }
 
