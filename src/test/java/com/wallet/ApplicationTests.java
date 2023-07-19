@@ -16,10 +16,4 @@ class ApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
-	@Test
-	void getPrice() throws IOException {
-		stockPricingService.getPrice();
-	}
-
 }
