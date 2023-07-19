@@ -49,7 +49,7 @@
                         <td th:text="${asset.lastPrice}"></td>
                         <td th:text="${asset.marketValue}"></td>
                         <td th:text="${asset.unrealizedPnL}"></td>
-                        <td th:text="${asset.percentagePnL}"></td>
+                        <td th:style="|${asset.percentagePnL < 0 ? 'color: red' : 'color: green'}" th:text="${asset.percentagePnL}|"></td>
 <!--                        <td th:text="${asset.buyDate}"></td>-->
                         <td>
                             <a th:href="@{/asset/edit/{id}(id=${asset.id})}"
