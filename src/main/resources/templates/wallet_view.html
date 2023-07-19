@@ -33,6 +33,7 @@
                         <th scope="col">Last Price</th>
                         <th scope="col">Market Value</th>
                         <th scope="col">Unrealized P&L</th>
+                        <th scope="col">Pnl %</th>
 <!--                        <th scope="col">buy date</th>-->
                         <th scope="col">Actions</th>
                     </tr>
@@ -48,6 +49,7 @@
                         <td th:text="${asset.lastPrice}"></td>
                         <td th:text="${asset.marketValue}"></td>
                         <td th:text="${asset.unrealizedPnL}"></td>
+                        <td th:text="${asset.percentagePnL}"></td>
 <!--                        <td th:text="${asset.buyDate}"></td>-->
                         <td>
                             <a th:href="@{/asset/edit/{id}(id=${asset.id})}"

@@ -51,6 +51,9 @@ public class Asset {
     @Column(name = "unrealized_pnl")
     private BigDecimal unrealizedPnL;
 
+    @Column(name = "percentage_pnl")
+    private BigDecimal percentagePnL;
+
     @Column(name = "wallet")
     private String wallet;
 

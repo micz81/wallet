@@ -39,6 +39,10 @@ public class AssetDto {
     private LocalDate buyDate;
     @NotNull
     private BigDecimal marketValue;
+
+    @NotNull
+    private BigDecimal percentagePnL;
+
     @NotNull
     private BigDecimal unrealizedPnL;
 

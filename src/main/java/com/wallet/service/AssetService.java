@@ -44,6 +44,7 @@ public class AssetService {
                 .multiply(updatedAsset.getLastPrice())
                 .setScale(2, RoundingMode.HALF_UP));
         updatedAsset.setUnrealizedPnL(calculateUnrealizedPnL(updatedAsset));
+        updatedAsset.setPercentagePnL(calculatePercentagePnl(updatedAsset));
 
         return assetCrudRepository.save(updatedAsset);
     }
@@ -54,8 +55,15 @@ public class AssetService {
         asset.setLastPrice(stockPricingService.getPrice(asset.getTicker()));
         asset.setMarketValue(calculateMarketValue(asset));
         asset.setUnrealizedPnL(calculateUnrealizedPnL(asset));
+        asset.setPercentagePnL(calculatePercentagePnl(asset));
 
         return assetCrudRepository.save(asset);
+    }
+
+    private BigDecimal calculatePercentagePnl(Asset asset) {
+        return asset.getUnrealizedPnL()
+                .divide(BigDecimal.valueOf(asset.getQuantity()).multiply(asset.getBuyPrice()), 2, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100));
     }
 
     private BigDecimal calculateMarketValue(Asset asset) {

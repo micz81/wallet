@@ -50,6 +50,10 @@
           <input th:field="*{unrealizedPnL}" type="text" name="unrealizedPnL" class="form-control" id="inputUnrealizedPnL">
         </div>
         <div class="mb-3">
+          <label for="inputPercentagePnL" class="form-label">PnL %</label>
+          <input th:field="*{percentagePnL}" type="text" name="percentagePnL" class="form-control" id="inputPercentagePnL">
+        </div>
+        <div class="mb-3">
           <label class="form-label">Wallet</label>
           <select name="wallet" th:field="${asset.wallet}" type="text">
             <option th:each="walletOpt : ${wallets}" th:value="${walletOpt.name}" th:text="${walletOpt.name}"></option>
