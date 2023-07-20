@@ -5,6 +5,7 @@ import com.google.gson.JsonParser;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,15 +15,30 @@ import java.math.RoundingMode;
 @Service
 public class StockPricingService {
 
+    @Value("${sa.id.url}")
+    private String saIdUrl;
+
+    @Value("${sa.id.url.suffix}")
+    private String saIdUrlSuffix;
+
+    @Value("${rapid.api.key}")
+    private String rapidApiKey;
+
+    @Value("${rapid.api.host}")
+    private String rapidApiHost;
+
+    @Value("${sa.pricing.url}")
+    private String saPricingUrl;
+
     public int getSaId(String ticker) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://seeking-alpha.p.rapidapi.com/v2/auto-complete?query=" + ticker + "&type=symbols&size=1")
+                .url(saIdUrl + ticker + saIdUrlSuffix)
                 .get()
-                .addHeader("X-RapidAPI-Key", "7b4458f0c9mshd301be4ebadf3f2p11c14djsn714398223539")
-                .addHeader("X-RapidAPI-Host", "seeking-alpha.p.rapidapi.com")
+                .addHeader("X-RapidAPI-Key", rapidApiKey)
+                .addHeader("X-RapidAPI-Host", rapidApiHost)
                 .build();
 
         Response response = client.newCall(request).execute();
@@ -40,13 +56,13 @@ public class StockPricingService {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://seeking-alpha.p.rapidapi.com/market/get-realtime-quotes?sa_ids=" + saId)
+                .url(saPricingUrl + saId)
                 .get()
-                .addHeader("X-RapidAPI-Key", "7b4458f0c9mshd301be4ebadf3f2p11c14djsn714398223539")
-                .addHeader("X-RapidAPI-Host", "seeking-alpha.p.rapidapi.com")
+                .addHeader("X-RapidAPI-Key", rapidApiKey)
+                .addHeader("X-RapidAPI-Host", rapidApiHost)
                 .build();
 
-        //add await and try with resource !!!!!!!!!!
+        //add await or try with resource ??
         Response response = client.newCall(request).execute();
 
         JsonObject result = new JsonParser().parse(response.body().string()).getAsJsonObject();
